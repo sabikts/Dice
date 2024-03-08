@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Viewport Meta Tag for Responsive Design -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dice Roller</title>
+<style>
+  /* Modern Font, Off-White Background, and Button Styling */
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #F8F8F8; text-align: center; margin: 0; padding-bottom: 20px; }
+  #dice-container { margin-top: 20px; }
+  .dice { display: inline-block; margin: 10px; }
+  .die { font-size: 48px; }
+  /* Button Styling */
+  button {
+    font-size: 20px;
+    padding: 10px 20px;
+    margin-top: 20px;
+  }
+
+  /* Media Queries for Responsive Design */
+  @media (max-width: 600px) {
+    .die { font-size: 36px; } /* Smaller font size for small devices */
+  }
+
+  @media (min-width: 601px) and (max-width: 1024px) {
+    .die { font-size: 40px; } /* Medium font size for tablets */
+  }
+
+  @media (min-width: 1025px) {
+    .die { font-size: 48px; } /* Larger font size for laptops/desktops */
+  }
+</style>
+</head>
+<body>
+<h1>Dice Roller</h1>
+<!-- Dropdown for Selecting Number of Dice -->
+<label for="dice-number">Number of Dice:</label>
+<select id="dice-number">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+<div id="dice-container"></div>
+<!-- Roll Dice Button -->
+<button onclick="rollDice()">Roll Dice!</button>
+
+<script>
+  function rollDice() {
+    const diceNumber = document.getElementById('dice-number').value;
+    const diceContainer = document.getElementById('dice-container');
+    diceContainer.innerHTML = ''; // Clear previous dice
+
+    let totalValue = 0;
+    for (let i = 0; i < diceNumber; i++) {
+      const dieValue = Math.floor(Math.random() * 6) + 1;
+      totalValue += dieValue;
+      const dieElement = document.createElement('div');
+      dieElement.classList.add('dice');
+      dieElement.innerHTML = `<div class="die">🎲${dieValue}</div>`;
+      diceContainer.appendChild(dieElement);
+    }
+    // Display the sum of the dice rolls
+    const sumElement = document.createElement('div');
+    sumElement.innerHTML = `<h2>Total: ${totalValue}</h2>`;
+    diceContainer.appendChild(sumElement);
+  }
+</script>
+</body>
+</html>
