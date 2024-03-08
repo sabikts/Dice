@@ -6,27 +6,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dice Roller</title>
 <style>
-  /* Modern Font, Off-White Background, and Button Styling */
-  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #F8F8F8; text-align: center; margin: 0; padding-bottom: 20px; }
-  #dice-container { margin-top: 20px; }
-  .dice { display: inline-block; margin: 10px; }
-  .die { font-size: 48px; }
-  /* Button Styling */
-  button {
-    font-size: 20px;
-    padding: 10px 20px;
+  /* Classic Theme with Modern Font and Off-White Background */
+  body {
+    font-family: 'Georgia', serif;
+    background-color: #F5F5DC; /* Beige background for a classic look */
+    color: #333; /* Dark text for contrast */
+    text-align: center;
+    margin: 0;
+    padding-bottom: 20px;
+  }
+  h1 {
+    font-size: 2.5em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+  }
+  label {
+    font-size: 1.2em;
+  }
+  select, button {
+    font-size: 1em;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #FFF;
+    border: 2px solid #333;
+    border-radius: 5px;
+  }
+  #dice-container {
     margin-top: 20px;
   }
-
+  .dice {
+    display: inline-block;
+    margin: 10px;
+  }
+  .die {
+    font-size: 48px;
+  }
+  /* Rolling Animation for Dice */
+  .roll {
+    animation: rollDiceAnimation 0.5s ease-out forwards;
+  }
+  @keyframes rollDiceAnimation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
   /* Media Queries for Responsive Design */
   @media (max-width: 600px) {
     .die { font-size: 36px; } /* Smaller font size for small devices */
   }
-
   @media (min-width: 601px) and (max-width: 1024px) {
     .die { font-size: 40px; } /* Medium font size for tablets */
   }
-
   @media (min-width: 1025px) {
     .die { font-size: 48px; } /* Larger font size for laptops/desktops */
   }
@@ -58,7 +88,7 @@
       totalValue += dieValue;
       const dieElement = document.createElement('div');
       dieElement.classList.add('dice');
-      dieElement.innerHTML = `<div class="die">🎲${dieValue}</div>`;
+      dieElement.innerHTML = `<div class="die roll">🎲${dieValue}</div>`;
       diceContainer.appendChild(dieElement);
     }
     // Display the sum of the dice rolls
